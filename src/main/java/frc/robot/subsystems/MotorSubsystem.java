@@ -13,7 +13,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 public class MotorSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
-  private SparkMax Motor = new SparkMax(3, MotorType.kBrushless); 
+  private SparkMax Motor = new SparkMax(9, MotorType.kBrushless); 
 
 
   public MotorSubsystem() {}
