@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
-import com.kauailabs.navx.frc.AHRS;
+import com.studica.frc.AHRS;
+import com.studica.frc.AHRS.NavXComType;
+
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -50,7 +52,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   // The gyro sensor
-  private AHRS m_gyro = new AHRS(SerialPort.Port.kUSB1);
+  private AHRS m_gyro = new AHRS(NavXComType.kUSB1);
 
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
@@ -85,7 +87,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DrivetrainSubsystem() {
     zeroHeading();
-    m_gyro.calibrate();
+    //m_gyro.calibrate();
 
     m_chooser.setDefaultOption("Medium Speed", DriveConstants.medium);
     m_chooser.addOption("Low Speed", DriveConstants.low);
