@@ -14,6 +14,7 @@ import frc.robot.auto.*;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 import frc.utils.ControllerUtils;
 
 public class RobotContainer {
@@ -33,6 +34,7 @@ public class RobotContainer {
 
   // Subsystems
   private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
+  private final LimelightSubsystem limelight = new LimelightSubsystem();
 
   // Commands
   private final TeleopCmd teleopCmd =
