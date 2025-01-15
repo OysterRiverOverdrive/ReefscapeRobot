@@ -5,12 +5,14 @@
 package frc.utils;
 
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-import com.revrobotics.spark.SparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
+import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -48,6 +50,10 @@ public class SwerveModule {
     // Initializes m_drivingConfig and m_turningConfig
     m_drivingConfig = new SparkMaxConfig();
     m_turningConfig = new SparkMaxConfig();
+
+    // Initializes m_drivingConfig and m_turningConfig
+    m_drivingConfig = new SparkMaxConfig();
+    m_turningConfig = new SparkMaxConfig();
     
     // Setup encoders and PID controllers for the driving and turning SPARKS MAX.
     m_drivingEncoder = m_drivingSparkMax.getEncoder();
@@ -60,17 +66,18 @@ public class SwerveModule {
     // Apply position and velocity conversion factors for the driving encoder. The
     // native units for position and velocity are rotations and RPM, respectively,
     // but we want meters and meters per second to use with WPILib's swerve APIs.
-    m_drivingConfig.encoder
-      .positionConversionFactor(ModuleConstants.kDrivingEncoderPositionFactor)
-      .velocityConversionFactor(ModuleConstants.kDrivingEncoderVelocityFactor);
+    m_drivingConfig
+        .encoder
+        .positionConversionFactor(ModuleConstants.kDrivingEncoderPositionFactor)
+        .velocityConversionFactor(ModuleConstants.kDrivingEncoderVelocityFactor);
 
     // Apply position and velocity conversion factors for the turning encoder. We
     // want these in radians and radians per second to use with WPILib's swerve
     // APIs.
-    m_turningConfig.encoder
-      .positionConversionFactor(ModuleConstants.kTurningEncoderPositionFactor)
-      .velocityConversionFactor(ModuleConstants.kTurningEncoderVelocityFactor);
-
+    m_turningConfig
+        .encoder
+        .positionConversionFactor(ModuleConstants.kTurningEncoderPositionFactor)
+        .velocityConversionFactor(ModuleConstants.kTurningEncoderVelocityFactor);
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
     // the steering motor in the MAXSwerve Module.
@@ -80,35 +87,32 @@ public class SwerveModule {
     // controller to go through 0 to get to the setpoint i.e. going from 350 degrees
     // to 10 degrees will go through 0 rather than the other direction which is a
     // longer route.
-    m_turningConfig.closedLoop
-      .positionWrappingEnabled(true)
-      .positionWrappingMinInput(
-        ModuleConstants.kTurningEncoderPositionPIDMinInput)
-      .positionWrappingMaxInput(
-        ModuleConstants.kTurningEncoderPositionPIDMaxInput);
+    m_turningConfig
+        .closedLoop
+        .positionWrappingEnabled(true)
+        .positionWrappingMinInput(ModuleConstants.kTurningEncoderPositionPIDMinInput)
+        .positionWrappingMaxInput(ModuleConstants.kTurningEncoderPositionPIDMaxInput);
 
     // Set the PID gains for the driving motor. Note these are example gains, and you
     // may need to tune them for your own robot!
-    m_drivingConfig.closedLoop
-      .pid(ModuleConstants.kDrivingP, ModuleConstants.kDrivingI, ModuleConstants.kDrivingD)
-      .velocityFF(ModuleConstants.kDrivingFF)
-      .outputRange(
-        ModuleConstants.kDrivingMinOutput, ModuleConstants.kDrivingMaxOutput);
+    m_drivingConfig
+        .closedLoop
+        .pid(ModuleConstants.kDrivingP, ModuleConstants.kDrivingI, ModuleConstants.kDrivingD)
+        .velocityFF(ModuleConstants.kDrivingFF)
+        .outputRange(ModuleConstants.kDrivingMinOutput, ModuleConstants.kDrivingMaxOutput);
 
     
     // Set the PID gains for the turning motor. Note these are example gains, and you
     // may need to tune them for your own robot!
-    m_turningConfig.closedLoop
-      .pid(ModuleConstants.kTurningP, ModuleConstants.kTurningI, ModuleConstants.kTurningD)
-      .velocityFF(ModuleConstants.kTurningFF)
-      .outputRange(
-        ModuleConstants.kTurningMinOutput, ModuleConstants.kTurningMaxOutput);
-  
+    m_turningConfig
+        .closedLoop
+        .pid(ModuleConstants.kTurningP, ModuleConstants.kTurningI, ModuleConstants.kTurningD)
+        .velocityFF(ModuleConstants.kTurningFF)
+        .outputRange(ModuleConstants.kTurningMinOutput, ModuleConstants.kTurningMaxOutput);
+
     // Set Idle Modes
     m_drivingConfig.idleMode(ModuleConstants.kDrivingMotorIdleMode);
     m_turningConfig.idleMode(ModuleConstants.kTurningMotorIdleMode);
-
-
     m_drivingConfig.smartCurrentLimit(ModuleConstants.kDrivingMotorCurrentLimit);
     m_turningConfig.smartCurrentLimit(ModuleConstants.kTurningMotorCurrentLimit);
 
@@ -116,12 +120,13 @@ public class SwerveModule {
     // operation, it will maintain the above configurations.
     // Factory reset, so we get the SPARKS MAX to a known state before configuring
     // them. This is useful in case a SPARK MAX is swapped out.
-    m_drivingSparkMax.configure(m_drivingConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    m_turningSparkMax.configure(m_turningConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    m_drivingSparkMax.configure(
+        m_drivingConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    m_turningSparkMax.configure(
+        m_turningConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     // ResetMode is coming from ServoHub, despite both it and PersistMode
     // existing in SparkBase. Configure only accepts SparkBase ResetMode,
     // so this isn't working.
-
 
     m_chassisAngularOffset = chassisAngularOffset;
     m_desiredState.angle = new Rotation2d(m_turningEncoder.getPosition());
