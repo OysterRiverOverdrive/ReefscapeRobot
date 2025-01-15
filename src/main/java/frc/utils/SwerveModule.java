@@ -50,10 +50,6 @@ public class SwerveModule {
     // Initializes m_drivingConfig and m_turningConfig
     m_drivingConfig = new SparkMaxConfig();
     m_turningConfig = new SparkMaxConfig();
-
-    // Initializes m_drivingConfig and m_turningConfig
-    m_drivingConfig = new SparkMaxConfig();
-    m_turningConfig = new SparkMaxConfig();
     
     // Setup encoders and PID controllers for the driving and turning SPARKS MAX.
     m_drivingEncoder = m_drivingSparkMax.getEncoder();
