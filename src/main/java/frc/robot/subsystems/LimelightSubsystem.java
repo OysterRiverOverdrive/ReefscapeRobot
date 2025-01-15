@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import java.util.Optional;
 import frc.utils.LimelightHelpers;
+import java.util.Optional;
 
 public class LimelightSubsystem extends SubsystemBase {
   private final SendableChooser<String> led_chooser = new SendableChooser<>();
@@ -52,6 +52,7 @@ public class LimelightSubsystem extends SubsystemBase {
 
   /**
    * Gets the alliance-relative 2D pose computed from AprilTags
+   *
    * @return Pose2d
    */
   public Pose2d getPose2d() {
@@ -64,6 +65,7 @@ public class LimelightSubsystem extends SubsystemBase {
 
   /**
    * Gets the alliance-relative 3D pose computed from AprilTags
+   *
    * @return Pose3d
    */
   public Pose3d getPose3d() {
@@ -75,15 +77,13 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   /**
-   * 
-   * @return ID of primary AprilTag (if any) currently in view of the Limelight. 
+   * @return ID of primary AprilTag (if any) currently in view of the Limelight.
    */
   public int getAprilTagID() {
     return (int) LimelightHelpers.getFiducialID("");
   }
 
   /**
-   * 
    * @return horizontal offset from crosshair to current AprilTag in degrees
    */
   public double getAprilTagX() {
@@ -91,7 +91,6 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   /**
-   * 
    * @return vertical offset from crosshair to current AprilTag in degrees
    */
   public double getAprilTagY() {
@@ -99,11 +98,9 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   /**
-   * 
    * @return area of the image containing AprilTag (0 to 100%)
    */
   public double getAprilTagArea() {
     return LimelightHelpers.getTA("");
   }
-
 }
