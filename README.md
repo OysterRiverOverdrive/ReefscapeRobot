@@ -1,4 +1,4 @@
-# Overdrive - Nautilus 2025 Reefscape 
+# Overdrive - Nautilus 2025 Reefscape
 
 Nautilus is our competition robot and code for the FIRST Robotics 2025 Competition, Reefscape. Nautilus is a modified REV MAXSwerve relying on a Studica NavX Micro as our accelerometer. Autonomous library is developed in-house.
 
@@ -18,4 +18,3 @@ In VSCode, find the WPILib logo, in the menu type `build` and click on the menu 
 In the terminal, type `./gradlew build`
 ### Spotless
 Spotless is a service that runs inorder to maintain code quality. If spotless fails when building the code. Open the terminal (Ctrl + ~) and type `./gradlew spotlessApply`
-
