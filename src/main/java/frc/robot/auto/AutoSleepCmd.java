@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class AutoSleepCmd extends Command {
   private Timer timer = new Timer();
   private double sleepTime;
+
   /** Creates a new AutoSleepCmd. */
   public AutoSleepCmd(double timeSleep) {
     sleepTime = timeSleep;
