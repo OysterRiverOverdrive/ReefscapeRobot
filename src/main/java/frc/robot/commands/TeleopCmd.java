@@ -14,6 +14,7 @@ import java.util.function.Supplier;
 public class TeleopCmd extends Command {
   /** Creates a new TeleopCmd. */
   private final DrivetrainSubsystem driveSub;
+
   // Create a controller object
   private final Joystick controller = new Joystick(DriveConstants.kDrveControllerPort);
 
