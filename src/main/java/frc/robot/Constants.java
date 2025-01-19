@@ -97,17 +97,17 @@ public final class Constants {
   // Constants specifically for the physical robot
   public static final class RobotConstants {
     // SPARK MAX CAN IDs
-    public static final int kFrontRightDrivingCanId = 2;
-    public static final int kFrontRightTurningCanId = 1;
+    public static final int kFrontRightDrivingCanId = 3;
+    public static final int kFrontRightTurningCanId = 2;
 
-    public static final int kFrontLeftDrivingCanId = 4;
-    public static final int kFrontLeftTurningCanId = 3;
+    public static final int kFrontLeftDrivingCanId = 5;
+    public static final int kFrontLeftTurningCanId = 4;
 
-    public static final int kRearRightDrivingCanId = 6;
-    public static final int kRearRightTurningCanId = 5;
+    public static final int kRearRightDrivingCanId = 7;
+    public static final int kRearRightTurningCanId = 6;
 
-    public static final int kRearLeftDrivingCanId = 8;
-    public static final int kRearLeftTurningCanId = 7;
+    public static final int kRearLeftDrivingCanId = 9;
+    public static final int kRearLeftTurningCanId = 8;
 
     // Used to declare Navx as upside down
     public static final boolean kGyroReversed = true;
