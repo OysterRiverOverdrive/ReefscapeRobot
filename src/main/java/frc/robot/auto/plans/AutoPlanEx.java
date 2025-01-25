@@ -1,57 +1,46 @@
 package frc.robot.auto.plans;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import java.util.List;
-
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.auto.AutoSleepCmd;
 
-public class AutoPlanEx extends ParallelCommandGroup{
-    
-    public AutoPlanEx
-        DrivetrainSubsystem drivetrain
-    ) {
+public class AutoPlanEx extends ParallelCommandGroup {
 
-        /*
+  public AutoPlanEx(DrivetrainSubsystem drivetrain) {
 
-        declare driving schematics
+    /*
 
-        AutoCreationCmd autodrive = new AutoCreationCmd();
+    declare driving schematics
 
-        Ex. 
-        Command RightShoot =
-        autodrive.AutoDriveCmd(
-            drivetrain,
-            List.of(new Translation2d(0.3, 0)),
-            new Pose2d(
-                0.76,
-                dash.getAlliance() * 0.12,
-                new Rotation2d(dash.getAlliance() * -2 * Math.PI / 3)));
+    AutoCreationCmd autodrive = new AutoCreationCmd();
 
-        --Then for formatting event-based commands toegther--
+    Ex.
+    Command RightShoot =
+    autodrive.AutoDriveCmd(
+        drivetrain,
+        List.of(new Translation2d(0.3, 0)),
+        new Pose2d(
+            0.76,
+            dash.getAlliance() * 0.12,
+            new Rotation2d(dash.getAlliance() * -2 * Math.PI / 3)));
 
-        function andThen() is a sequential command group
-            -commands one after another
-        function alongWith() is a parallel command group
-            -commands with each other
-        function deadlineWith() runs commands alongside the previous group until one of the commands stop.
-            -the first command to stop will stop the entire group
+    --Then for formatting event-based commands toegther--
 
-        first:
-        andThen(alongWith(Command... commands that are going to run))
-        .andThen(alongWith())
-        ...
-            .deadlineWith()
-        and that's the first cycle :)
-            
+    function andThen() is a sequential command group
+        -commands one after another
+    function alongWith() is a parallel command group
+        -commands with each other
+    function deadlineWith() runs commands alongside the previous group until one of the commands stop.
+        -the first command to stop will stop the entire group
 
-        */
+    first:
+    andThen(alongWith(Command... commands that are going to run))
+    .andThen(alongWith())
+    ...
+        .deadlineWith()
+    and that's the first cycle :)
 
-    }
 
+    */
+
+  }
 }

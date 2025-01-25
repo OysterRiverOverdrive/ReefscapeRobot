@@ -37,8 +37,7 @@ public class AutoCreationCmd {
    *
    * @return A Command variable telling the robot to drive
    */
-  public Command AutoDriveCmd(
-      DrivetrainSubsystem _drivetrain, List<Pose2d> waypoints) {
+  public Command AutoDriveCmd(DrivetrainSubsystem _drivetrain, List<Pose2d> waypoints) {
     drivetrain = _drivetrain;
 
     TrajectoryConfig trajectoryConfig =
@@ -54,8 +53,7 @@ public class AutoCreationCmd {
             AutoConstants.kPThetaController, 0.01, 0, AutoConstants.kThetaControllerConstraints);
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
     // Generate trajectory
-    Trajectory trajectory =
-        TrajectoryGenerator.generateTrajectory(waypoints, trajectoryConfig);
+    Trajectory trajectory = TrajectoryGenerator.generateTrajectory(waypoints, trajectoryConfig);
 
     // Construct command to follow trajectory
     SwerveControllerCommand swerveControllerCommand =
