@@ -109,6 +109,9 @@ public final class Constants {
     public static final int kRearLeftDrivingCanId = 9;
     public static final int kRearLeftTurningCanId = 8;
 
+    public static final int kElevator1CanId = 10;
+    public static final int kElevator2CanId = 11;
+
     // Used to declare Navx as upside down
     public static final boolean kGyroReversed = true;
 
@@ -117,6 +120,50 @@ public final class Constants {
     public static final double kFrontRightChassisAngularOffset = 0;
     public static final double kBackLeftChassisAngularOffset = Math.PI;
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+
+    // Elevator Height to Rotations of Elevator Motor in in/rot
+    public static final double kElevatorHeightToRot =
+        10; // guess??? maybe? not accurate check when elevator attatched
+
+    // Array of heights of elevator stops relative to base height
+    // Indicies 1-4 are corresponding reef levels, index 0 is base
+    public static final double[] kElevatorStops = {
+      0,
+      RobotConstants.kElevatorReefL1Height
+          + RobotConstants.kElevatorCoralArmHeightDifference
+          - RobotConstants.kElevatorLowestHeight,
+      RobotConstants.kElevatorReefL2Height
+          + RobotConstants.kElevatorCoralArmHeightDifference
+          - RobotConstants.kElevatorLowestHeight,
+      RobotConstants.kElevatorReefL3Height
+          + RobotConstants.kElevatorCoralArmHeightDifference
+          - RobotConstants.kElevatorLowestHeight,
+      RobotConstants.kElevatorReefL4Height
+          + RobotConstants.kElevatorCoralArmHeightDifference
+          - RobotConstants.kElevatorLowestHeight
+    };
+
+    // Heights for elevator (inches)
+    // Height of bottom of elevator
+    public static final double kElevatorLowestHeight =
+        10; // guess??? maybe? not accurate check when elevator attatched
+    // Heights of tops of reef pipes
+    public static final double kElevatorReefL1Height = 18;
+    public static final double kElevatorReefL2Height = 31.875;
+    public static final double kElevatorReefL3Height = 47.625;
+    public static final double kElevatorReefL4Height = 72;
+    // Height of pivot point to end of coral arm for elevator
+    public static final double kElevatorCoralArmHeightDifference = 4 * Math.sqrt(2);
+  }
+
+  // Constants for PIDs
+  public static final class PIDConstants {
+    public static final double kElevatorP =
+        0; // guess??? maybe? not accurate check when elevator attatched
+    public static final double kElevatorI =
+        0; // guess??? maybe? not accurate check when elevator attatched
+    public static final double kElevatorD =
+        0; // guess??? maybe? not accurate check when elevator attatched
   }
 
   // Constants specifically for Swerve Module
