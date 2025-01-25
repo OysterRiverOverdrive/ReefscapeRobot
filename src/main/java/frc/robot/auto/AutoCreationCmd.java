@@ -28,11 +28,7 @@ public class AutoCreationCmd {
    * Method to autonomously drive the robot (ALL MEASUREMENTS IN METERS)
    *
    * @param _drivetrain Swerve Drivetrain Subsystem Instance
-   * @param waypoints A list of points the robot should travel through
-   *     <pre>List.of(new Translation2d(0, 1), new Translation2d(1, 1), new Translation2d(1, 0))
-   *     </pre>
-   *
-   * @param finalrest Pose2d of what the robot's final resting position should be
+   * @param waypoints A list of Pose2d points the robot should travel through
    *     <pre>new Pose2d(x-offset, y-offset, new Rotation2d(rotationRadians))</pre>
    *
    * @return A Command variable telling the robot to drive

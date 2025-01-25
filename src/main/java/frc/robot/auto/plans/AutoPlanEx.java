@@ -5,7 +5,9 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class AutoPlanEx extends ParallelCommandGroup {
 
-  public AutoPlanEx(DrivetrainSubsystem drivetrain) {
+  public AutoPlanEx(DrivetrainSubsystem drivetrain
+  //,ElevatorSubsystem elevator
+  ) {
 
     /*
 
@@ -14,14 +16,11 @@ public class AutoPlanEx extends ParallelCommandGroup {
     AutoCreationCmd autodrive = new AutoCreationCmd();
 
     Ex.
-    Command RightShoot =
-    autodrive.AutoDriveCmd(
-        drivetrain,
-        List.of(new Translation2d(0.3, 0)),
-        new Pose2d(
-            0.76,
-            dash.getAlliance() * 0.12,
-            new Rotation2d(dash.getAlliance() * -2 * Math.PI / 3)));
+    Command MovetoReef = 
+    autodrive.AutoDriveCmd(drivetrain, list.of(
+    new Pose2d(325.68, 158.515, new Rotation2d(0)),
+    new Pose2d(209.49, 158.515, new Rotation2d(0))
+    ));
 
     --Then for formatting event-based commands toegther--
 
@@ -39,6 +38,9 @@ public class AutoPlanEx extends ParallelCommandGroup {
         .deadlineWith()
     and that's the first cycle :)
 
+
+    Ex.
+    
 
     */
 
