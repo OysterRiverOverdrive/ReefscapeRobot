@@ -12,6 +12,7 @@ public class BeginSleepCmd extends Command {
   private Timer timer = new Timer();
   private double sleepTime;
   private DrivetrainSubsystem drivetrain;
+
   /** Creates a new AutoSleepCmd. */
   public BeginSleepCmd(DrivetrainSubsystem drives, double timeSleep) {
     sleepTime = timeSleep;
