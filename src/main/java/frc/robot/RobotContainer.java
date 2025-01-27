@@ -11,10 +11,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.auto.*;
+import frc.robot.commands.AlgaeSpinnerForwardCommand;
+import frc.robot.commands.AlgaeSpinnerReverseCommand;
+import frc.robot.commands.AlgaeSpinnerStopCommand;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.AlgaeSpinnerSubsystem;
 import frc.utils.ControllerUtils;
 
 public class RobotContainer {
@@ -35,6 +39,7 @@ public class RobotContainer {
   // Subsystems
   private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   private final LimelightSubsystem limelight = new LimelightSubsystem();
+  private final AlgaeSpinnerSubsystem algaeSpinner = new AlgaeSpinnerSubsystem();
 
   // Commands
   private final TeleopCmd teleopCmd =
@@ -68,6 +73,14 @@ public class RobotContainer {
     cutil
         .supplier(Controllers.ps4_RB, DriveConstants.joysticks.DRIVER)
         .onTrue(new InstantCommand(() -> drivetrain.zeroHeading()));
+    cutil
+        .supplier(3, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new AlgaeSpinnerForwardCommand(algaeSpinner))
+        .onFalse(new AlgaeSpinnerStopCommand(algaeSpinner));
+    cutil
+        .supplier(4, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new AlgaeSpinnerReverseCommand(algaeSpinner))
+        .onFalse(new AlgaeSpinnerStopCommand(algaeSpinner));
   }
 
   public Command getAutonomousCommand() {
