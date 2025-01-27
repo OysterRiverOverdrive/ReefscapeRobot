@@ -6,8 +6,8 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class AutoPlanEx extends ParallelCommandGroup {
 
   public AutoPlanEx(DrivetrainSubsystem drivetrain
-  //,ElevatorSubsystem elevator
-  ) {
+      // ,ElevatorSubsystem elevator
+      ) {
 
     /*
 
@@ -16,7 +16,7 @@ public class AutoPlanEx extends ParallelCommandGroup {
     AutoCreationCmd autodrive = new AutoCreationCmd();
 
     Ex.
-    Command MoveToReef = 
+    Command MoveToReef =
     autodrive.AutoDriveCmd(drivetrain, list.of(
     new Pose2d(325.68, 158.515, new Rotation2d(0)),
     new Pose2d(209.49, 158.515, new Rotation2d(0))
@@ -38,7 +38,7 @@ public class AutoPlanEx extends ParallelCommandGroup {
         .deadlineWith()
     and that's the first cycle :)
 
-    
+
     Ex.
     andThen(alongWith(MoveToReef, New AutoElevatorCmd(elevator, ElevatorToLv1)))
     .andThen(New AutoElevatorCmd(elevator, ReleaseCoral))
