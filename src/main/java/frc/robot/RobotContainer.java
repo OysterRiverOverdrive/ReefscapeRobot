@@ -11,10 +11,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.auto.*;
+import frc.robot.commands.CoralIntakeForwardCommand;
+import frc.robot.commands.CoralIntakeReverseCommand;
+import frc.robot.commands.CoralIntakeStopCommand;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.CoralIntakeSubsystem;
 import frc.utils.ControllerUtils;
 
 public class RobotContainer {
@@ -35,6 +39,7 @@ public class RobotContainer {
   // Subsystems
   private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   private final LimelightSubsystem limelight = new LimelightSubsystem();
+  private final CoralIntakeSubsystem coralIntake = new CoralIntakeSubsystem();
 
   // Commands
   private final TeleopCmd teleopCmd =
@@ -68,6 +73,14 @@ public class RobotContainer {
     cutil
         .supplier(Controllers.ps4_RB, DriveConstants.joysticks.DRIVER)
         .onTrue(new InstantCommand(() -> drivetrain.zeroHeading()));
+    cutil
+        .supplier(1, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new CoralIntakeForwardCommand(coralIntake))
+        .onFalse(new CoralIntakeStopCommand(coralIntake));
+    cutil
+        .supplier(2, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new CoralIntakeReverseCommand(coralIntake))
+        .onFalse(new CoralIntakeStopCommand(coralIntake));
   }
 
   public Command getAutonomousCommand() {

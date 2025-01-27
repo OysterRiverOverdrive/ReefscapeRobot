@@ -109,6 +109,8 @@ public final class Constants {
     public static final int kRearLeftDrivingCanId = 9;
     public static final int kRearLeftTurningCanId = 8;
 
+    public static final int kCoralIntakeCanId = 12;
+
     // Used to declare Navx as upside down
     public static final boolean kGyroReversed = true;
 
@@ -117,6 +119,9 @@ public final class Constants {
     public static final double kFrontRightChassisAngularOffset = 0;
     public static final double kBackLeftChassisAngularOffset = Math.PI;
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+
+    // Coral Intake constants
+    public static final double kCoralIntakeSpeed = 0.5;
   }
 
   // Constants specifically for Swerve Module
