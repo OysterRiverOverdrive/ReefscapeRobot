@@ -183,7 +183,7 @@ public final class Constants {
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
   }
-  
+
   public static final class TimerConstants {
     // from timer from when autonomous starts to autonmous ends
     public static final int AutoTimerLength = 15; // seconds

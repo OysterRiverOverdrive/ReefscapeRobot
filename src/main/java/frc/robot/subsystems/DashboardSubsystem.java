@@ -89,6 +89,7 @@ public final class DashboardSubsystem {
   public static float FormatNumber(float broken) {
     return (Math.round(broken * 1000f) / 1000f);
   }
+
   // check enabled if enabled
   public static boolean isTeleOpStartTimerEnabled() {
     return TeleOpStartTimerEnabled;
