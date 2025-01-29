@@ -91,8 +91,8 @@ public class ControllerUtils {
   }
 
   /**
-   * Sub-method of acquiring boolean of whether a trigger is pressed
-   * to turn into a boolean supplier, `() -> TrigSupplier(1, 0.2, DriveConstants.joysticks.OPERATOR)
+   * Sub-method of acquiring boolean of whether a trigger is pressed to turn into a boolean
+   * supplier, `() -> TrigSupplier(1, 0.2, DriveConstants.joysticks.OPERATOR)
    *
    * @param axisnum Number associated with trigger axis (Pulled from FRC Driver Station)
    * @param deadzone How much input should be ignored to prevent accidental press (ex. 0.2)
@@ -105,7 +105,9 @@ public class ControllerUtils {
     } else {
       controller = new Joystick(DriveConstants.kOperControllerPort);
     }
-    double value = Math.abs(MathUtil.applyDeadband(controller.getRawAxis(axisnum), DriveConstants.deadzoneDriver));
+    double value =
+        Math.abs(
+            MathUtil.applyDeadband(controller.getRawAxis(axisnum), DriveConstants.deadzoneDriver));
     if (value > 0) {
       return true;
     } else {
