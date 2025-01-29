@@ -143,11 +143,11 @@ public final class Constants {
 
   // Constants for PIDs
   public static final class PIDConstants {
-    public static final double kElevatorP =
+    public static final double kAlgaeArmP =
         0; // guess??? maybe? not accurate check when elevator attatched
-    public static final double kElevatorI =
+    public static final double kAlgaeArmI =
         0; // guess??? maybe? not accurate check when elevator attatched
-    public static final double kElevatorD =
+    public static final double kAlgaeArmD =
         0; // guess??? maybe? not accurate check when elevator attatched
   }
 

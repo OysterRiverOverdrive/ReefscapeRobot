@@ -4,13 +4,9 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.spark.SparkBase.PersistMode;
-import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -27,8 +23,8 @@ public class AlgaeArmSubsystem extends SubsystemBase {
 
   private double elevatorSpeed;
 
-  private final PIDController PIDo =
-      new PIDController(PIDConstants.kElevatorP, PIDConstants.kElevatorI, PIDConstants.kElevatorD);
+  private final PIDController AlgaeArmPID =
+      new PIDController(PIDConstants.kAlgaeArmP, PIDConstants.kAlgaeArmI, PIDConstants.kAlgaeArmD);
 
   public AlgaeArmSubsystem() {
     m_AlgaeArmEncoder = m_AlgaeArmSparkMax.getEncoder();
@@ -59,19 +55,19 @@ public class AlgaeArmSubsystem extends SubsystemBase {
   }
 
   public void toDown() {
-    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[0]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[0]);
   }
 
   public void toFlat() {
-    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[1]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[1]);
   }
 
   public void toRemoveAlgae() {
-    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[2]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[2]);
   }
 
   public void toUp() {
-    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[3]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[3]);
   }
 
 
@@ -79,7 +75,7 @@ public class AlgaeArmSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     elevatorSpeed =
-        PIDo.calculate(m_AlgaeArmEncoder.getPosition() * RobotConstants.kAlgaeArmGearRatio);
+      AlgaeArmPID.calculate(m_AlgaeArmEncoder.getPosition() * RobotConstants.kAlgaeArmGearRatio);
     m_AlgaeArmSparkMax.set(elevatorSpeed);
   }
 
