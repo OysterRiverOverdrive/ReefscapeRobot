@@ -4,6 +4,7 @@
 
 package frc.utils;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveConstants;
@@ -86,6 +87,29 @@ public class ControllerUtils {
       BooleanSupplier bsup = () -> _getPOVbutton(angle, joystick);
       Trigger mybutton = new Trigger(bsup);
       return mybutton;
+    }
+  }
+
+  /**
+   * Sub-method of acquiring boolean of whether a trigger is pressed
+   * to turn into a boolean supplier, `() -> TrigSupplier(1, 0.2, DriveConstants.joysticks.OPERATOR)
+   *
+   * @param axisnum Number associated with trigger axis (Pulled from FRC Driver Station)
+   * @param deadzone How much input should be ignored to prevent accidental press (ex. 0.2)
+   * @param joystick Controller of which the button is located, use Enum in constants
+   */
+  public boolean TrigSupplier(int axisnum, double deadzone, DriveConstants.joysticks joystick) {
+    Joystick controller;
+    if (joystick == DriveConstants.joysticks.DRIVER) {
+      controller = new Joystick(DriveConstants.kDrveControllerPort);
+    } else {
+      controller = new Joystick(DriveConstants.kOperControllerPort);
+    }
+    double value = Math.abs(MathUtil.applyDeadband(controller.getRawAxis(axisnum), DriveConstants.deadzoneDriver));
+    if (value > 0) {
+      return true;
+    } else {
+      return false;
     }
   }
 
