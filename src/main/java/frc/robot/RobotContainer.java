@@ -14,7 +14,7 @@ import frc.robot.auto.*;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.AlgaeArmSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.utils.ControllerUtils;
 
@@ -36,7 +36,7 @@ public class RobotContainer {
   // Subsystems
   private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   private final LimelightSubsystem limelight = new LimelightSubsystem();
-  private final ElevatorSubsystem elevator = new ElevatorSubsystem();
+  private final AlgaeArmSubsystem algaeArm = new AlgaeArmSubsystem();
 
   // Commands
   private final TeleopCmd teleopCmd =
@@ -70,14 +70,12 @@ public class RobotContainer {
     cutil
         .supplier(Controllers.ps4_RB, DriveConstants.joysticks.DRIVER)
         .onTrue(new InstantCommand(() -> drivetrain.zeroHeading()));
-    cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL1()));
-    cutil.POVsupplier(90, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL2()));
-    cutil.POVsupplier(180, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL3()));
-    cutil.POVsupplier(270, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL4()));
+    cutil.supplier(Controllers.xbox_b, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new InstantCommand(() -> algaeArm.toDown()));
+    cutil.supplier(Controllers.xbox_a, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new InstantCommand(() -> algaeArm.toFlat()));
+    cutil.supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new InstantCommand(() -> algaeArm.toRemoveAlgae()));
   }
 
   public Command getAutonomousCommand() {

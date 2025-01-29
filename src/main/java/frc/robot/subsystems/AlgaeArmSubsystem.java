@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -15,33 +16,22 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 
-public class ElevatorSubsystem extends SubsystemBase {
+public class AlgaeArmSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final SparkMax m_elevator1SparkMax =
-      new SparkMax(RobotConstants.kElevator1CanId, MotorType.kBrushless);
+  private final SparkMax m_AlgaeArmSparkMax =
+      new SparkMax(RobotConstants.kAlgaeArmCanId, MotorType.kBrushless);
 
-  private final SparkMax m_elevator2SparkMax =
-      new SparkMax(RobotConstants.kElevator2CanId, MotorType.kBrushless);
+  
 
-  private final AbsoluteEncoder m_elevator1Encoder;
-
-  private final SparkMaxConfig m_elevator2Config;
+  private final RelativeEncoder m_AlgaeArmEncoder;
 
   private double elevatorSpeed;
 
   private final PIDController PIDo =
       new PIDController(PIDConstants.kElevatorP, PIDConstants.kElevatorI, PIDConstants.kElevatorD);
 
-  public ElevatorSubsystem() {
-
-    m_elevator2Config = new SparkMaxConfig();
-
-    m_elevator1Encoder = m_elevator1SparkMax.getAbsoluteEncoder();
-
-    m_elevator2Config.follow(m_elevator1SparkMax);
-
-    m_elevator2SparkMax.configure(
-        m_elevator2Config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+  public AlgaeArmSubsystem() {
+    m_AlgaeArmEncoder = m_AlgaeArmSparkMax.getEncoder();
   }
 
   /**
@@ -68,32 +58,29 @@ public class ElevatorSubsystem extends SubsystemBase {
     return false;
   }
 
-  public void toBase() {
-    PIDo.setSetpoint(RobotConstants.kElevatorStops[0]);
+  public void toDown() {
+    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[0]);
   }
 
-  public void toL1() {
-    PIDo.setSetpoint(RobotConstants.kElevatorStops[1]);
+  public void toFlat() {
+    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[1]);
   }
 
-  public void toL2() {
-    PIDo.setSetpoint(RobotConstants.kElevatorStops[2]);
+  public void toRemoveAlgae() {
+    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[2]);
   }
 
-  public void toL3() {
-    PIDo.setSetpoint(RobotConstants.kElevatorStops[3]);
+  public void toUp() {
+    PIDo.setSetpoint(RobotConstants.kAlgaeArmStops[3]);
   }
 
-  public void toL4() {
-    PIDo.setSetpoint(RobotConstants.kElevatorStops[4]);
-  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     elevatorSpeed =
-        PIDo.calculate(m_elevator1Encoder.getPosition() * RobotConstants.kElevatorHeightToRot);
-    m_elevator1SparkMax.set(elevatorSpeed);
+        PIDo.calculate(m_AlgaeArmEncoder.getPosition() * RobotConstants.kAlgaeArmGearRatio);
+    m_AlgaeArmSparkMax.set(elevatorSpeed);
   }
 
   @Override

@@ -109,8 +109,8 @@ public final class Constants {
     public static final int kRearLeftDrivingCanId = 9;
     public static final int kRearLeftTurningCanId = 8;
 
-    public static final int kElevator1CanId = 10;
-    public static final int kElevator2CanId = 11;
+    public static final int kAlgaeArmCanId = 13;
+    
 
     // Used to declare Navx as upside down
     public static final boolean kGyroReversed = true;
@@ -121,39 +121,24 @@ public final class Constants {
     public static final double kBackLeftChassisAngularOffset = Math.PI;
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
-    // Elevator Height to Rotations of Elevator Motor in in/rot
-    public static final double kElevatorHeightToRot =
-        10; // guess??? maybe? not accurate check when elevator attatched
+    // Algae Arm gear ratio, 15 to 1, so motor rotations to arm rotations is 1 to 15
+    public static final double kAlgaeArmGearRatio = 1.0 / 15.0;
 
-    // Array of heights of elevator stops relative to base height
-    // Indicies 1-4 are corresponding reef levels, index 0 is base
-    public static final double[] kElevatorStops = {
-      0,
-      RobotConstants.kElevatorReefL1Height
-          + RobotConstants.kElevatorCoralArmHeightDifference
-          - RobotConstants.kElevatorLowestHeight,
-      RobotConstants.kElevatorReefL2Height
-          + RobotConstants.kElevatorCoralArmHeightDifference
-          - RobotConstants.kElevatorLowestHeight,
-      RobotConstants.kElevatorReefL3Height
-          + RobotConstants.kElevatorCoralArmHeightDifference
-          - RobotConstants.kElevatorLowestHeight,
-      RobotConstants.kElevatorReefL4Height
-          + RobotConstants.kElevatorCoralArmHeightDifference
-          - RobotConstants.kElevatorLowestHeight
+    // Array of heights of algae arm stops relative to base height
+    // Indicies are stops in order from bottom to top
+    public static final double[] kAlgaeArmStops = {
+        RobotConstants.kAlgaeArmBottomAngle,
+        RobotConstants.kAlgaeArmFlatAngle,
+        RobotConstants.kAlgaeArmRemoveAlgaeAngle,
+        RobotConstants.kAlgaeArmTopAngle
     };
 
-    // Heights for elevator (inches)
-    // Height of bottom of elevator
-    public static final double kElevatorLowestHeight =
-        10; // guess??? maybe? not accurate check when elevator attatched
-    // Heights of tops of reef pipes
-    public static final double kElevatorReefL1Height = 18;
-    public static final double kElevatorReefL2Height = 31.875;
-    public static final double kElevatorReefL3Height = 47.625;
-    public static final double kElevatorReefL4Height = 72;
-    // Height of pivot point to end of coral arm for elevator
-    public static final double kElevatorCoralArmHeightDifference = 4 * Math.sqrt(2);
+    // Angles for Algae Arm in Degrees are: -60, 0, 40, 60
+    // Following Angles are in rotations relative to bottom.
+    public static final double kAlgaeArmBottomAngle = 0;
+    public static final double kAlgaeArmFlatAngle = 1.0 / 6.0;
+    public static final double kAlgaeArmRemoveAlgaeAngle = 1.0 / 3.6;
+    public static final double kAlgaeArmTopAngle = 1.0 / 3.0;
   }
 
   // Constants for PIDs
