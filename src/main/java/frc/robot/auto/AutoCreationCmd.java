@@ -28,17 +28,12 @@ public class AutoCreationCmd {
    * Method to autonomously drive the robot (ALL MEASUREMENTS IN METERS)
    *
    * @param _drivetrain Swerve Drivetrain Subsystem Instance
-   * @param waypoints A list of points the robot should travel through
-   *     <pre>List.of(new Translation2d(0, 1), new Translation2d(1, 1), new Translation2d(1, 0))
-   *     </pre>
-   *
-   * @param finalrest Pose2d of what the robot's final resting position should be
+   * @param waypoints A list of Pose2d points the robot should travel through
    *     <pre>new Pose2d(x-offset, y-offset, new Rotation2d(rotationRadians))</pre>
    *
    * @return A Command variable telling the robot to drive
    */
-  public Command AutoDriveCmd(
-      DrivetrainSubsystem _drivetrain, List<Translation2d> waypoints, Pose2d finalrest) {
+  public Command AutoDriveCmd(DrivetrainSubsystem _drivetrain, List<Pose2d> waypoints) {
     drivetrain = _drivetrain;
 
     TrajectoryConfig trajectoryConfig =
@@ -54,9 +49,7 @@ public class AutoCreationCmd {
             AutoConstants.kPThetaController, 0.01, 0, AutoConstants.kThetaControllerConstraints);
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
     // Generate trajectory
-    Trajectory trajectory =
-        TrajectoryGenerator.generateTrajectory(
-            drivetrain.getPose(), waypoints, finalrest, trajectoryConfig);
+    Trajectory trajectory = TrajectoryGenerator.generateTrajectory(waypoints, trajectoryConfig);
 
     // Construct command to follow trajectory
     SwerveControllerCommand swerveControllerCommand =
