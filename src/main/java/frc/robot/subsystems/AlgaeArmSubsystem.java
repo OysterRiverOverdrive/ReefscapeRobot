@@ -11,6 +11,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
+import frc.robot.Constants.RobotConstants.AlgaeArmConstants;
 
 public class AlgaeArmSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
@@ -21,7 +22,7 @@ public class AlgaeArmSubsystem extends SubsystemBase {
 
   private double elevatorSpeed;
 
-  private final PIDController AlgaeArmPID =
+  private final PIDController algaeArmPID =
       new PIDController(PIDConstants.kAlgaeArmP, PIDConstants.kAlgaeArmI, PIDConstants.kAlgaeArmD);
 
   public AlgaeArmSubsystem() {
@@ -53,26 +54,27 @@ public class AlgaeArmSubsystem extends SubsystemBase {
   }
 
   public void toDown() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[0]);
+    algaeArmPID.setSetpoint(AlgaeArmConstants.kAlgaeArmStopRotations[0]);
   }
 
   public void toFlat() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[1]);
+    algaeArmPID.setSetpoint(AlgaeArmConstants.kAlgaeArmStopRotations[1]);
   }
 
   public void toRemoveAlgae() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[2]);
+    algaeArmPID.setSetpoint(AlgaeArmConstants.kAlgaeArmStopRotations[2]);
   }
 
   public void toUp() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[3]);
+    algaeArmPID.setSetpoint(AlgaeArmConstants.kAlgaeArmStopRotations[3]);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     elevatorSpeed =
-        AlgaeArmPID.calculate(m_AlgaeArmEncoder.getPosition() * RobotConstants.kAlgaeArmGearRatio);
+        algaeArmPID.calculate(
+            m_AlgaeArmEncoder.getPosition() * AlgaeArmConstants.kAlgaeArmGearRatio);
     m_AlgaeArmSparkMax.set(elevatorSpeed);
   }
 
