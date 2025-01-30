@@ -17,8 +17,6 @@ public class AlgaeArmSubsystem extends SubsystemBase {
   private final SparkMax m_AlgaeArmSparkMax =
       new SparkMax(RobotConstants.kAlgaeArmCanId, MotorType.kBrushless);
 
-  
-
   private final RelativeEncoder m_AlgaeArmEncoder;
 
   private double elevatorSpeed;
@@ -70,12 +68,11 @@ public class AlgaeArmSubsystem extends SubsystemBase {
     AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[3]);
   }
 
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     elevatorSpeed =
-      AlgaeArmPID.calculate(m_AlgaeArmEncoder.getPosition() * RobotConstants.kAlgaeArmGearRatio);
+        AlgaeArmPID.calculate(m_AlgaeArmEncoder.getPosition() * RobotConstants.kAlgaeArmGearRatio);
     m_AlgaeArmSparkMax.set(elevatorSpeed);
   }
 

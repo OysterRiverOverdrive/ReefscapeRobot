@@ -110,7 +110,6 @@ public final class Constants {
     public static final int kRearLeftTurningCanId = 8;
 
     public static final int kAlgaeArmCanId = 13;
-    
 
     // Used to declare Navx as upside down
     public static final boolean kGyroReversed = true;
@@ -127,10 +126,10 @@ public final class Constants {
     // Array of heights of algae arm stops relative to base height
     // Indicies are stops in order from bottom to top
     public static final double[] kAlgaeArmStops = {
-        RobotConstants.kAlgaeArmBottomAngle,
-        RobotConstants.kAlgaeArmFlatAngle,
-        RobotConstants.kAlgaeArmRemoveAlgaeAngle,
-        RobotConstants.kAlgaeArmTopAngle
+      RobotConstants.kAlgaeArmBottomAngle,
+      RobotConstants.kAlgaeArmFlatAngle,
+      RobotConstants.kAlgaeArmRemoveAlgaeAngle,
+      RobotConstants.kAlgaeArmTopAngle
     };
 
     // Angles for Algae Arm in Degrees are: -60, 0, 40, 60
