@@ -123,31 +123,38 @@ public final class Constants {
     // Algae Arm gear ratio, 15 to 1, so motor rotations to arm rotations is 1 to 15
     public static final double kAlgaeArmGearRatio = 1.0 / 15.0;
 
-    // Array of heights of algae arm stops relative to base height
+    // Following angles are in degrees relative to bottom.
+    public static final double kAlgaeArmBottomAngle = 0;
+    public static final double kAlgaeArmFlatAngle = 40;
+    public static final double kAlgaeArmRemoveAlgaeAngle = 60;
+    public static final double kAlgaeArmTopAngle = 80;
+
+    // Array of angles of algae arm stops relative to base angle in degrees
     // Indicies are stops in order from bottom to top
-    public static final double[] kAlgaeArmStops = {
+    public static final double[] kAlgaeArmStopAngles = {
       RobotConstants.kAlgaeArmBottomAngle,
       RobotConstants.kAlgaeArmFlatAngle,
       RobotConstants.kAlgaeArmRemoveAlgaeAngle,
       RobotConstants.kAlgaeArmTopAngle
     };
 
-    // Angles for Algae Arm in Degrees are: -60, 0, 40, 60
-    // Following Angles are in rotations relative to bottom.
-    public static final double kAlgaeArmBottomAngle = 0;
-    public static final double kAlgaeArmFlatAngle = 1.0 / 6.0;
-    public static final double kAlgaeArmRemoveAlgaeAngle = 1.0 / 3.6;
-    public static final double kAlgaeArmTopAngle = 1.0 / 3.0;
+    // Same array in terms of rotations
+    public static final double[] kAlgaeArmStopRotations = {
+      RobotConstants.kAlgaeArmBottomAngle / 360,
+      RobotConstants.kAlgaeArmFlatAngle / 360,
+      RobotConstants.kAlgaeArmRemoveAlgaeAngle  / 360,
+      RobotConstants.kAlgaeArmTopAngle  / 360
+    };
   }
 
   // Constants for PIDs
   public static final class PIDConstants {
     public static final double kAlgaeArmP =
-        0; // guess??? maybe? not accurate check when elevator attatched
+        0.1; // guess??? maybe? not accurate check when algae arm attatched
     public static final double kAlgaeArmI =
-        0; // guess??? maybe? not accurate check when elevator attatched
+        0; // guess??? maybe? not accurate check when algae arm attatched
     public static final double kAlgaeArmD =
-        0; // guess??? maybe? not accurate check when elevator attatched
+        0; // guess??? maybe? not accurate check when algae arm attatched
   }
 
   // Constants specifically for Swerve Module

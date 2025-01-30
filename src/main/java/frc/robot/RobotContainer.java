@@ -74,7 +74,7 @@ public class RobotContainer {
         .supplier(Controllers.xbox_b, DriveConstants.joysticks.OPERATOR)
         .onTrue(new InstantCommand(() -> algaeArm.toDown()));
     cutil
-        .supplier(Controllers.xbox_a, DriveConstants.joysticks.OPERATOR)
+        .supplier(Controllers.xbox_x, DriveConstants.joysticks.OPERATOR)
         .onTrue(new InstantCommand(() -> algaeArm.toFlat()));
     cutil
         .supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)

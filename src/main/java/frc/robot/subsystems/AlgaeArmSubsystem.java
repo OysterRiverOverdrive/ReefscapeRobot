@@ -53,19 +53,19 @@ public class AlgaeArmSubsystem extends SubsystemBase {
   }
 
   public void toDown() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[0]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[0]);
   }
 
   public void toFlat() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[1]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[1]);
   }
 
   public void toRemoveAlgae() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[2]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[2]);
   }
 
   public void toUp() {
-    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStops[3]);
+    AlgaeArmPID.setSetpoint(RobotConstants.kAlgaeArmStopRotations[3]);
   }
 
   @Override
