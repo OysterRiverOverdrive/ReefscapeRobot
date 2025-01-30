@@ -152,25 +152,30 @@ public final class Constants {
     }
 
     public static final class ElevatorConstants {
-      // Elevator Height to Rotations of Elevator Motor in in/rot
+      // Elevator Height to Rotations of Elevator Motor in inches/rotation
       public static final double kElevatorHeightToRot =
           10; // guess??? maybe? not accurate check when elevator attatched
 
-      // Array of heights of elevator stops relative to base height
+      // Array of heights of elevator stops relative to base height in inches
+      // These hieghts are of the hinge for the coral bucket,
+      // recieved by taking Reef Level height,
+      // adding height difference between bottom and top of the coral bucket,
+      // and subtracting the lowest height reachable by the elevator,
+      // making all heights relative to the lowest point on the elevator
       // Indicies 1-4 are corresponding reef levels, index 0 is base
       public static final double[] kElevatorStops = {
         0,
         ElevatorConstants.kElevatorReefL1Height
-            + ElevatorConstants.kElevatorCoralArmHeightDifference
+            + ElevatorConstants.kElevatorCoralBucketHeightDifference
             - ElevatorConstants.kElevatorLowestHeight,
         ElevatorConstants.kElevatorReefL2Height
-            + ElevatorConstants.kElevatorCoralArmHeightDifference
+            + ElevatorConstants.kElevatorCoralBucketHeightDifference
             - ElevatorConstants.kElevatorLowestHeight,
         ElevatorConstants.kElevatorReefL3Height
-            + ElevatorConstants.kElevatorCoralArmHeightDifference
+            + ElevatorConstants.kElevatorCoralBucketHeightDifference
             - ElevatorConstants.kElevatorLowestHeight,
         ElevatorConstants.kElevatorReefL4Height
-            + ElevatorConstants.kElevatorCoralArmHeightDifference
+            + ElevatorConstants.kElevatorCoralBucketHeightDifference
             - ElevatorConstants.kElevatorLowestHeight
       };
 
@@ -183,8 +188,8 @@ public final class Constants {
       public static final double kElevatorReefL2Height = 31.875;
       public static final double kElevatorReefL3Height = 47.625;
       public static final double kElevatorReefL4Height = 72;
-      // Height of pivot point to end of coral arm for elevator
-      public static final double kElevatorCoralArmHeightDifference = 4 * Math.sqrt(2);
+      // Height difference between pivot point and end of coral bucket for elevator
+      public static final double kElevatorCoralBucketHeightDifference = 4 * Math.sqrt(2);
     }
   }
 
