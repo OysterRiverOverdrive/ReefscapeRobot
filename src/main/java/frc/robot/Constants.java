@@ -142,8 +142,8 @@ public final class Constants {
     public static final double[] kAlgaeArmStopRotations = {
       RobotConstants.kAlgaeArmBottomAngle / 360,
       RobotConstants.kAlgaeArmFlatAngle / 360,
-      RobotConstants.kAlgaeArmRemoveAlgaeAngle  / 360,
-      RobotConstants.kAlgaeArmTopAngle  / 360
+      RobotConstants.kAlgaeArmRemoveAlgaeAngle / 360,
+      RobotConstants.kAlgaeArmTopAngle / 360
     };
   }
 
