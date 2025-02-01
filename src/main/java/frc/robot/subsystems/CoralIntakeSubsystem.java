@@ -4,18 +4,15 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotConstants;
 
-import com.revrobotics.spark.SparkMax;
-import com.revrobotics.spark.SparkLowLevel.MotorType;
-
 public class CoralIntakeSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-
-  private SparkMax Motor = new SparkMax(RobotConstants.kCoralIntakeCanId, MotorType.kBrushless); 
-
+  private SparkMax Motor = new SparkMax(RobotConstants.kCoralIntakeCanId, MotorType.kBrushless);
 
   public CoralIntakeSubsystem() {}
 
@@ -54,8 +51,6 @@ public class CoralIntakeSubsystem extends SubsystemBase {
   public void coralIntakeStopCmd() {
     Motor.stopMotor();
   }
-
-
 
   @Override
   public void periodic() {

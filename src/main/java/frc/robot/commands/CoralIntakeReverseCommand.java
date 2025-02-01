@@ -4,8 +4,8 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.CoralIntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.CoralIntakeSubsystem;
 
 /** An example command that uses an example subsystem. */
 public class CoralIntakeReverseCommand extends Command {
@@ -25,13 +25,12 @@ public class CoralIntakeReverseCommand extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.coralIntakeForwardCmd(); 
+    m_subsystem.coralIntakeForwardCmd();
   }
 
   // Called once the command ends or is interrupted.
