@@ -97,17 +97,19 @@ public final class Constants {
   // Constants specifically for the physical robot
   public static final class RobotConstants {
     // SPARK MAX CAN IDs
-    public static final int kFrontRightDrivingCanId = 2;
-    public static final int kFrontRightTurningCanId = 1;
+    public static final int kFrontRightDrivingCanId = 3;
+    public static final int kFrontRightTurningCanId = 2;
 
-    public static final int kFrontLeftDrivingCanId = 4;
-    public static final int kFrontLeftTurningCanId = 3;
+    public static final int kFrontLeftDrivingCanId = 5;
+    public static final int kFrontLeftTurningCanId = 4;
 
-    public static final int kRearRightDrivingCanId = 6;
-    public static final int kRearRightTurningCanId = 5;
+    public static final int kRearRightDrivingCanId = 7;
+    public static final int kRearRightTurningCanId = 6;
 
-    public static final int kRearLeftDrivingCanId = 8;
-    public static final int kRearLeftTurningCanId = 7;
+    public static final int kRearLeftDrivingCanId = 9;
+    public static final int kRearLeftTurningCanId = 8;
+
+    public static final int kAlgaeArmCanId = 13;
 
     // Used to declare Navx as upside down
     public static final boolean kGyroReversed = true;
@@ -117,6 +119,42 @@ public final class Constants {
     public static final double kFrontRightChassisAngularOffset = 0;
     public static final double kBackLeftChassisAngularOffset = Math.PI;
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+
+    // Algae Arm gear ratio, 15 to 1, so motor rotations to arm rotations is 1 to 15
+    public static final double kAlgaeArmGearRatio = 1.0 / 15.0;
+
+    // Following angles are in degrees relative to bottom.
+    public static final double kAlgaeArmBottomAngle = 0;
+    public static final double kAlgaeArmFlatAngle = 40;
+    public static final double kAlgaeArmRemoveAlgaeAngle = 60;
+    public static final double kAlgaeArmTopAngle = 80;
+
+    // Array of angles of algae arm stops relative to base angle in degrees
+    // Indicies are stops in order from bottom to top
+    public static final double[] kAlgaeArmStopAngles = {
+      RobotConstants.kAlgaeArmBottomAngle,
+      RobotConstants.kAlgaeArmFlatAngle,
+      RobotConstants.kAlgaeArmRemoveAlgaeAngle,
+      RobotConstants.kAlgaeArmTopAngle
+    };
+
+    // Same array in terms of rotations
+    public static final double[] kAlgaeArmStopRotations = {
+      RobotConstants.kAlgaeArmBottomAngle / 360,
+      RobotConstants.kAlgaeArmFlatAngle / 360,
+      RobotConstants.kAlgaeArmRemoveAlgaeAngle / 360,
+      RobotConstants.kAlgaeArmTopAngle / 360
+    };
+  }
+
+  // Constants for PIDs
+  public static final class PIDConstants {
+    public static final double kAlgaeArmP =
+        0.1; // guess??? maybe? not accurate check when algae arm attatched
+    public static final double kAlgaeArmI =
+        0; // guess??? maybe? not accurate check when algae arm attatched
+    public static final double kAlgaeArmD =
+        0; // guess??? maybe? not accurate check when algae arm attatched
   }
 
   // Constants specifically for Swerve Module
@@ -182,5 +220,14 @@ public final class Constants {
 
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
+  }
+
+  public static final class TimerConstants {
+    // from timer from when autonomous starts to autonmous ends
+    public static final int AutoTimerLength = 15; // seconds
+    // timer that starts when autonomous ends until Halftime
+    public static final int TeleOpStartTimerLength = 75; // seconds
+    // timer that starts when Halftime untill match ends
+    public static final int TeleOpEndTimerLength = 75; // seconds
   }
 }

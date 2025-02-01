@@ -28,14 +28,16 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
-// LimelightHelpers provides static methods and classes for interfacing with Limelight vision
-// cameras in FRC. This library supports all Limelight features including AprilTag tracking, Neural
-// Networks, and standard color/retroreflective tracking.
+/**
+ * LimelightHelpers provides static methods and classes for interfacing with Limelight vision
+ * cameras in FRC. This library supports all Limelight features including AprilTag tracking, Neural
+ * Networks, and standard color/retroreflective tracking.
+ */
 public class LimelightHelpers {
 
   private static final Map<String, DoubleArrayEntry> doubleArrayEntries = new ConcurrentHashMap<>();
 
-  // Represents a Color/Retroreflective Target Result extracted from JSON Output
+  /** Represents a Color/Retroreflective Target Result extracted from JSON Output */
   public static class LimelightTarget_Retro {
 
     @JsonProperty("t6c_ts")
@@ -126,7 +128,7 @@ public class LimelightHelpers {
     }
   }
 
-  // Represents an AprilTag/Fiducial Target Result extracted from JSON Output
+  /** Represents an AprilTag/Fiducial Target Result extracted from JSON Output */
   public static class LimelightTarget_Fiducial {
 
     @JsonProperty("fID")
@@ -223,14 +225,14 @@ public class LimelightHelpers {
     }
   }
 
-  // Represents a Barcode Target Result extracted from JSON Output
+  /** Represents a Barcode Target Result extracted from JSON Output */
   public static class LimelightTarget_Barcode {
 
-    //  Barcode family type (e.g. "QR", "DataMatrix", etc.)
+    /** Barcode family type (e.g. "QR", "DataMatrix", etc.) */
     @JsonProperty("fam")
     public String family;
 
-    // Gets the decoded data content of the barcode
+    /** Gets the decoded data content of the barcode */
     @JsonProperty("data")
     public String data;
 
@@ -265,7 +267,7 @@ public class LimelightHelpers {
     }
   }
 
-  // Represents a Neural Classifier Pipeline Result extracted from JSON Output
+  /** Represents a Neural Classifier Pipeline Result extracted from JSON Output */
   public static class LimelightTarget_Classifier {
 
     @JsonProperty("class")
@@ -295,7 +297,7 @@ public class LimelightHelpers {
     public LimelightTarget_Classifier() {}
   }
 
-  // Represents a Neural Detector Pipeline Result extracted from JSON Output
+  /** Represents a Neural Detector Pipeline Result extracted from JSON Output */
   public static class LimelightTarget_Detector {
 
     @JsonProperty("class")
@@ -331,7 +333,7 @@ public class LimelightHelpers {
     public LimelightTarget_Detector() {}
   }
 
-  // Limelight Results object, parsed from a Limelight's JSON results output.
+  /** Limelight Results object, parsed from a Limelight's JSON results output. */
   public static class LimelightResults {
 
     public String error;
@@ -433,7 +435,7 @@ public class LimelightHelpers {
     }
   }
 
-  // Represents a Limelight Raw Fiducial result from Limelight's NetworkTables output.
+  /** Represents a Limelight Raw Fiducial result from Limelight's NetworkTables output. */
   public static class RawFiducial {
     public int id = 0;
     public double txnc = 0;
@@ -461,7 +463,7 @@ public class LimelightHelpers {
     }
   }
 
-  // Represents a Limelight Raw Neural Detector result from Limelight's NetworkTables output.
+  /** Represents a Limelight Raw Neural Detector result from Limelight's NetworkTables output. */
   public static class RawDetection {
     public int classId = 0;
     public double txnc = 0;
@@ -504,7 +506,7 @@ public class LimelightHelpers {
     }
   }
 
-  // Represents a 3D Pose Estimate.
+  /** Represents a 3D Pose Estimate. */
   public static class PoseEstimate {
     public Pose2d pose;
     public double timestampSeconds;
@@ -517,7 +519,7 @@ public class LimelightHelpers {
     public RawFiducial[] rawFiducials;
     public boolean isMegaTag2;
 
-    // Instantiates a PoseEstimate object with default values
+    /** Instantiates a PoseEstimate object with default values */
     public PoseEstimate() {
       this.pose = new Pose2d();
       this.timestampSeconds = 0;
@@ -555,7 +557,7 @@ public class LimelightHelpers {
 
   private static ObjectMapper mapper;
 
-  // Print JSON Parse time to the console in milliseconds
+  /** Print JSON Parse time to the console in milliseconds */
   static boolean profileJSON = false;
 
   static final String sanitizeName(String name) {
@@ -882,6 +884,9 @@ public class LimelightHelpers {
     return null;
   }
 
+  /////
+  /////
+
   /**
    * Does the Limelight have a valid target?
    *
@@ -1149,6 +1154,9 @@ public class LimelightHelpers {
     return getLimelightNTStringArray(limelightName, "rawbarcodes");
   }
 
+  /////
+  /////
+
   public static Pose3d getBotPose3d(String limelightName) {
     double[] poseArray = getLimelightNTDoubleArray(limelightName, "botpose");
     return toPose3D(poseArray);
@@ -1313,6 +1321,9 @@ public class LimelightHelpers {
     double[] result = getBotPose(limelightName);
     return toPose2D(result);
   }
+
+  /////
+  /////
 
   public static void setPipelineIndex(String limelightName, int pipelineIndex) {
     setLimelightNTDouble(limelightName, "pipeline", pipelineIndex);
@@ -1547,6 +1558,9 @@ public class LimelightHelpers {
     setLimelightNTDoubleArray(limelightName, "camerapose_robotspace_set", entries);
   }
 
+  /////
+  /////
+
   public static void setPythonScriptData(String limelightName, double[] outgoingPythonData) {
     setLimelightNTDoubleArray(limelightName, "llrobot", outgoingPythonData);
   }
@@ -1554,6 +1568,9 @@ public class LimelightHelpers {
   public static double[] getPythonScriptData(String limelightName) {
     return getLimelightNTDoubleArray(limelightName, "llpython");
   }
+
+  /////
+  /////
 
   /** Asynchronously take snapshot. */
   public static CompletableFuture<Boolean> takeSnapshot(String tableName, String snapshotName) {
