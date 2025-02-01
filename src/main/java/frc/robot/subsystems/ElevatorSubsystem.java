@@ -72,21 +72,21 @@ public class ElevatorSubsystem extends SubsystemBase {
   // Logs print encoder and corresponding elevator height values
   public double getHeight() {
     return ((m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
-    + ElevatorConstants.kElevatorLowestHeight);
+        + ElevatorConstants.kElevatorLowestHeight);
   }
 
   // Possible print method for heightGet:
   /*
-    System.out.println("Encoder: " + m_elevator1Encoder.getPosition() + " rotations");
-    System.out.println(
-        "Elevator Relative Height: "
-            + (m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
-            + " inches");
-    System.out.println(
-        "Elevator Height: "
-            + ((m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
-                + ElevatorConstants.kElevatorLowestHeight)
-            + " inches"); */
+  System.out.println("Encoder: " + m_elevator1Encoder.getPosition() + " rotations");
+  System.out.println(
+      "Elevator Relative Height: "
+          + (m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
+          + " inches");
+  System.out.println(
+      "Elevator Height: "
+          + ((m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
+              + ElevatorConstants.kElevatorLowestHeight)
+          + " inches"); */
 
   @Override
   public void periodic() {
