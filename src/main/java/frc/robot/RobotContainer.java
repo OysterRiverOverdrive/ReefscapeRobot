@@ -85,10 +85,6 @@ public class RobotContainer {
     cutil
         .supplier(Controllers.xbox_options, DriveConstants.joysticks.OPERATOR)
         .onTrue(new InstantCommand(() -> elevator.toBase()));
-    cutil
-        .supplier(Controllers.xbox_share, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.heightGet()));
-
     // Algae Arm Bindings
     cutil
         .supplier(Controllers.xbox_b, DriveConstants.joysticks.OPERATOR)
