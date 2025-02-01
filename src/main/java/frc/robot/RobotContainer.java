@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.auto.*;
-// import frc.robot.auto.plans.*;
+import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -41,6 +41,8 @@ public class RobotContainer {
       new TeleopCmd(
           drivetrain,
           () -> cutil.Boolsupplier(Controllers.ps4_LB, DriveConstants.joysticks.DRIVER));
+
+  private final CoolTwoCoralAutoPlan coolTwoCOrealAuto = new CoolTwoCoralAutoPlan(drivetrain);
 
   public RobotContainer() {
     // Declare default command during Teleop Period as TeleopCmd(Driving Command)
@@ -79,7 +81,7 @@ public class RobotContainer {
     switch (m_chooser.getSelected()) {
       default:
       case auto1:
-        break;
+        auto = coolTwoCOrealAuto;
       case auto2:
         break;
       case auto3:
