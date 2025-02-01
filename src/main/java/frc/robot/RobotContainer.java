@@ -13,7 +13,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.auto.*;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
-import frc.robot.subsystems.AlgaeArmSubsystem;
+// import frc.robot.subsystems.AlgaeArmSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -38,7 +38,7 @@ public class RobotContainer {
   private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   private final LimelightSubsystem limelight = new LimelightSubsystem();
   private final ElevatorSubsystem elevator = new ElevatorSubsystem();
-  private final AlgaeArmSubsystem algaeArm = new AlgaeArmSubsystem();
+  // private final AlgaeArmSubsystem algaeArm = new AlgaeArmSubsystem();
 
   // Commands
   private final TeleopCmd teleopCmd =
@@ -49,6 +49,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Declare default command during Teleop Period as TeleopCmd(Driving Command)
     drivetrain.setDefaultCommand(teleopCmd);
+    elevator.setDefaultCommand(new InstantCommand(() -> elevator.stop()));
 
     // Add Auto options to dropdown and push to dashboard
     m_chooser.setDefaultOption("Auto[Rename Me]", auto1);
@@ -73,29 +74,33 @@ public class RobotContainer {
         .supplier(Controllers.ps4_RB, DriveConstants.joysticks.DRIVER)
         .onTrue(new InstantCommand(() -> drivetrain.zeroHeading()));
 
-    // Elevator Bindings
-    cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL1()));
-    cutil.POVsupplier(90, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL2()));
-    cutil.POVsupplier(180, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL3()));
-    cutil.POVsupplier(270, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toL4()));
-    cutil
-        .supplier(Controllers.xbox_options, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.toBase()));
+    // // Elevator Bindings
+    // cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> elevator.toL1()));
+    // cutil.POVsupplier(90, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> elevator.toL2()));
+    // cutil.POVsupplier(180, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> elevator.toL3()));
+    // cutil.POVsupplier(270, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> elevator.toL4()));
+    // cutil
+    //     .supplier(Controllers.xbox_options, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> elevator.toBase()));
 
-    // Algae Arm Bindings
-    cutil
-        .supplier(Controllers.xbox_b, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> algaeArm.toDown()));
-    cutil
-        .supplier(Controllers.xbox_x, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> algaeArm.toFlat()));
-    cutil
-        .supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> algaeArm.toRemoveAlgae()));
+    cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new InstantCommand(() -> elevator.runup()));
+    cutil.POVsupplier(90, DriveConstants.joysticks.OPERATOR)
+        .onTrue(new InstantCommand(() -> elevator.rundown()));
+    // // Algae Arm Bindings
+    // cutil
+    //     .supplier(Controllers.xbox_b, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> algaeArm.toDown()));
+    // cutil
+    //     .supplier(Controllers.xbox_x, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> algaeArm.toFlat()));
+    // cutil
+    //     .supplier(Controllers.xbox_y, DriveConstants.joysticks.OPERATOR)
+    //     .onTrue(new InstantCommand(() -> algaeArm.toRemoveAlgae()));
   }
 
   public Command getAutonomousCommand() {

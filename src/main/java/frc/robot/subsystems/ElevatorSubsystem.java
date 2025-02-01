@@ -69,6 +69,18 @@ public class ElevatorSubsystem extends SubsystemBase {
     return false;
   }
 
+  public void runup() {
+    m_elevator1SparkMax.set(0.3);
+  }
+
+  public void rundown() {
+    m_elevator1SparkMax.set(-0.3);
+  }
+
+  public void stop() {
+    m_elevator1SparkMax.stopMotor();
+  }
+
   public void toBase() {
     elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[0]);
   }
@@ -91,11 +103,12 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    System.out.println(m_elevator1Encoder.getPosition());
     // This method will be called once per scheduler run
-    elevatorSpeed =
-        elevatorPID.calculate(
-            m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot);
-    m_elevator1SparkMax.set(elevatorSpeed);
+    // elevatorSpeed =
+    //     elevatorPID.calculate(
+    //         m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot);
+    // m_elevator1SparkMax.set(elevatorSpeed);
   }
 
   @Override
