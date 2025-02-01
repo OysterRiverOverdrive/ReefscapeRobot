@@ -132,6 +132,7 @@ public final class Constants {
       public static final double kAlgaeArmFlatAngle = 40;
       public static final double kAlgaeArmRemoveAlgaeAngle = 60;
       public static final double kAlgaeArmTopAngle = 80;
+      // guess??? maybe? not accurate check when algae arm attatched
 
       // Array of angles of algae arm stops relative to base angle in degrees
       // Indicies are stops in order from bottom to top
@@ -153,8 +154,8 @@ public final class Constants {
 
     public static final class ElevatorConstants {
       // Elevator Height to Rotations of Elevator Motor in inches/rotation
-      public static final double kElevatorHeightToRot =
-          10; // guess??? maybe? not accurate check when elevator attatched
+      public static final double kElevatorHeightToRot = 10;
+      // guess??? maybe? not accurate check when elevator attatched
 
       // Array of heights of elevator stops relative to base height in inches
       // These hieghts are of the hinge for the coral bucket,
@@ -163,6 +164,7 @@ public final class Constants {
       // and subtracting the lowest height reachable by the elevator,
       // making all heights relative to the lowest point on the elevator
       // Indicies 1-4 are corresponding reef levels, index 0 is base
+      // Index 5 is height of elevator for coral intake
       public static final double[] kElevatorStops = {
         0,
         ElevatorConstants.kElevatorReefL1Height
@@ -176,18 +178,22 @@ public final class Constants {
             - ElevatorConstants.kElevatorLowestHeight,
         ElevatorConstants.kElevatorReefL4Height
             + ElevatorConstants.kElevatorCoralBucketHeightDifference
-            - ElevatorConstants.kElevatorLowestHeight
+            - ElevatorConstants.kElevatorLowestHeight,
+        ElevatorConstants.kElevatorIntakeHeight - ElevatorConstants.kElevatorLowestHeight
       };
 
       // Heights for elevator (inches)
-      // Height of bottom of elevator
-      public static final double kElevatorLowestHeight =
-          10; // guess??? maybe? not accurate check when elevator attatched
+      // Height of bottom of elevator (Coral Bucket Hinge)
+      public static final double kElevatorLowestHeight = 10;
+      // guess??? maybe? not accurate check when elevator attatched
       // Heights of tops of reef pipes
       public static final double kElevatorReefL1Height = 18;
       public static final double kElevatorReefL2Height = 31.875;
       public static final double kElevatorReefL3Height = 47.625;
       public static final double kElevatorReefL4Height = 72;
+      // Height of coral bucket hinge for coral intake
+      public static final double kElevatorIntakeHeight = 25;
+      // guess??? maybe? not accurate check when elevator attatched
       // Height difference between pivot point and end of coral bucket for elevator
       public static final double kElevatorCoralBucketHeightDifference = 4 * Math.sqrt(2);
     }
@@ -197,20 +203,20 @@ public final class Constants {
   public static final class PIDConstants {
 
     // Elevator PID
-    public static final double kElevatorP =
-        0.1; // guess??? maybe? not accurate check when elevator attatched
-    public static final double kElevatorI =
-        0; // guess??? maybe? not accurate check when elevator attatched
-    public static final double kElevatorD =
-        0; // guess??? maybe? not accurate check when elevator attatched
+    public static final double kElevatorP = 0.1;
+    // guess??? maybe? not accurate check when elevator attatched
+    public static final double kElevatorI = 0;
+    // guess??? maybe? not accurate check when elevator attatched
+    public static final double kElevatorD = 0;
+    // guess??? maybe? not accurate check when elevator attatched
 
     // Algae Arm PID
-    public static final double kAlgaeArmP =
-        0.1; // guess??? maybe? not accurate check when algae arm attatched
-    public static final double kAlgaeArmI =
-        0; // guess??? maybe? not accurate check when algae arm attatched
-    public static final double kAlgaeArmD =
-        0; // guess??? maybe? not accurate check when algae arm attatched
+    public static final double kAlgaeArmP = 0.1;
+    // guess??? maybe? not accurate check when algae arm attatched
+    public static final double kAlgaeArmI = 0;
+    // guess??? maybe? not accurate check when algae arm attatched
+    public static final double kAlgaeArmD = 0;
+    // guess??? maybe? not accurate check when algae arm attatched
   }
 
   // Constants specifically for Swerve Module
