@@ -163,27 +163,42 @@ public final class Constants {
       // adding height difference between bottom and top of the coral bucket,
       // and subtracting the lowest height reachable by the elevator,
       // making all heights relative to the lowest point on the elevator
+      // After, it adds the in the offset so the coral center is lined up
       // Indicies 1-4 are corresponding reef levels, index 0 is base
       // Index 5 is height of elevator for coral intake
-      public static final double[] kElevatorStops = {
+      public static final double[] kElevatorStopsCalculated = {
         0,
         ElevatorConstants.kElevatorReefL1Height
             + ElevatorConstants.kElevatorCoralBucketHeightDifference
-            - ElevatorConstants.kElevatorLowestHeight,
+            - ElevatorConstants.kElevatorLowestHeight
+            + ElevatorConstants.kElevatorReefOffset,
         ElevatorConstants.kElevatorReefL2Height
             + ElevatorConstants.kElevatorCoralBucketHeightDifference
-            - ElevatorConstants.kElevatorLowestHeight,
+            - ElevatorConstants.kElevatorLowestHeight
+            + ElevatorConstants.kElevatorReefOffset,
         ElevatorConstants.kElevatorReefL3Height
             + ElevatorConstants.kElevatorCoralBucketHeightDifference
-            - ElevatorConstants.kElevatorLowestHeight,
+            - ElevatorConstants.kElevatorLowestHeight
+            + ElevatorConstants.kElevatorReefOffset,
         ElevatorConstants.kElevatorReefL4Height
             + ElevatorConstants.kElevatorCoralBucketHeightDifference
-            - ElevatorConstants.kElevatorLowestHeight,
+            - ElevatorConstants.kElevatorLowestHeight
+            + ElevatorConstants.kElevatorReefOffset,
         ElevatorConstants.kElevatorIntakeHeight - ElevatorConstants.kElevatorLowestHeight
       };
 
+      // Heights for elevator as tested, last one is still guess
+      public static final double[] kElevatorStopsTested = {
+        0 - ElevatorConstants.kElevatorLowestHeight,
+        26 - ElevatorConstants.kElevatorLowestHeight,
+        35.5 - ElevatorConstants.kElevatorLowestHeight,
+        51.5 - ElevatorConstants.kElevatorLowestHeight,
+        76.5 - ElevatorConstants.kElevatorLowestHeight,
+        25 - ElevatorConstants.kElevatorLowestHeight
+      };
+
       // Heights for elevator (inches)
-      // Height of bottom of elevator (Coral Bucket Hinge)
+      // Height of bottom of elevator
       public static final double kElevatorLowestHeight = 10;
       // guess??? maybe? not accurate check when elevator attatched
       // Heights of tops of reef pipes
@@ -194,8 +209,18 @@ public final class Constants {
       // Height of coral bucket hinge for coral intake
       public static final double kElevatorIntakeHeight = 25;
       // guess??? maybe? not accurate check when elevator attatched
+      // Offset of elevator for coral to line up with reef branch (inches)
+      // Center of coral lines up with top of branch
+      // Signed, negative moves down, positive moves up
+      public static final double kElevatorReefOffset = -2;
+      // Coral bucket downward angle from flat, degrees
+      public static final double kElevatorCoralBucketAngleDegrees = 28;
+      // Coral bucket downward angle from flat, degrees
+      public static final double kElevatorCoralBucketAngleRadians =
+          kElevatorCoralBucketAngleDegrees * Math.PI / 180.0;
       // Height difference between pivot point and end of coral bucket for elevator
-      public static final double kElevatorCoralBucketHeightDifference = 4 * Math.sqrt(2);
+      public static final double kElevatorCoralBucketHeightDifference =
+          8 * Math.sin(kElevatorCoralBucketAngleRadians);
     }
   }
 

@@ -11,6 +11,7 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 import frc.robot.Constants.RobotConstants.ElevatorConstants;
@@ -45,31 +46,37 @@ public class ElevatorSubsystem extends SubsystemBase {
   }
 
   public void toBase() {
-    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[0]);
+    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStopsTested[0]);
   }
 
   public void toL1() {
-    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[1]);
+    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStopsTested[1]);
   }
 
   public void toL2() {
-    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[2]);
+    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStopsTested[2]);
   }
 
   public void toL3() {
-    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[3]);
+    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStopsTested[3]);
   }
 
   public void toL4() {
-    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[4]);
+    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStopsTested[4]);
   }
 
   public void toIntake() {
-    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStops[5]);
+    elevatorPID.setSetpoint(ElevatorConstants.kElevatorStopsTested[5]);
   }
 
   // Logs print encoder and corresponding elevator height values
-  public void heightGet() {
+  public double getHeight() {
+    return ((m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
+    + ElevatorConstants.kElevatorLowestHeight);
+  }
+
+  // Possible print method for heightGet:
+  /*
     System.out.println("Encoder: " + m_elevator1Encoder.getPosition() + " rotations");
     System.out.println(
         "Elevator Relative Height: "
@@ -79,8 +86,7 @@ public class ElevatorSubsystem extends SubsystemBase {
         "Elevator Height: "
             + ((m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot)
                 + ElevatorConstants.kElevatorLowestHeight)
-            + " inches");
-  }
+            + " inches"); */
 
   @Override
   public void periodic() {
@@ -89,5 +95,7 @@ public class ElevatorSubsystem extends SubsystemBase {
         elevatorPID.calculate(
             m_elevator1Encoder.getPosition() * ElevatorConstants.kElevatorHeightToRot);
     m_elevator1SparkMax.set(elevatorSpeed);
+
+    SmartDashboard.putNumber("Elevator Height", getHeight());
   }
 }
