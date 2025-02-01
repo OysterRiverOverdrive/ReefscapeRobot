@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.kinematics.Odometry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -14,11 +15,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.utils.LimelightHelpers;
 import java.util.Optional;
 
+import frc.robot.subsystems.DrivetrainSubsystem;
+
 public class LimelightSubsystem extends SubsystemBase {
   private final SendableChooser<String> led_chooser = new SendableChooser<>();
   private final String leds_on = "leds_on";
   private final String leds_off = "leds_off";
   private final String leds_flash = "leds_flash";
+
+  private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
 
   /** Creates a new LimelightSubSys. */
   public LimelightSubsystem() {
@@ -28,18 +33,6 @@ public class LimelightSubsystem extends SubsystemBase {
     led_chooser.addOption("On", leds_on);
     led_chooser.addOption("Flash", leds_flash);
     SmartDashboard.putData("Limelight LEDs", led_chooser);
-  }
-
-  @Override
-  public void periodic() {
-    // Turn camera LEDs off or on
-    if (led_chooser.getSelected().equals(leds_off)) {
-      LimelightHelpers.setLEDMode_ForceOff("");
-    } else if (led_chooser.getSelected().equals(leds_on)) {
-      LimelightHelpers.setLEDMode_ForceOn("");
-    } else {
-      LimelightHelpers.setLEDMode_PipelineControl("");
-    }
   }
 
   public void setLEDsOn() {
@@ -102,5 +95,20 @@ public class LimelightSubsystem extends SubsystemBase {
    */
   public double getAprilTagArea() {
     return LimelightHelpers.getTA("");
+  }
+
+  @Override
+  public void periodic() {
+    // Turn camera LEDs off or on
+    if (led_chooser.getSelected().equals(leds_off)) {
+      LimelightHelpers.setLEDMode_ForceOff("");
+    } else if (led_chooser.getSelected().equals(leds_on)) {
+      LimelightHelpers.setLEDMode_ForceOn("");
+    } else {
+      LimelightHelpers.setLEDMode_PipelineControl("");
+    }
+
+    drivetrain.resetOdometry(getPose2d());
+    
   }
 }
