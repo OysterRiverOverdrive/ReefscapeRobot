@@ -94,11 +94,11 @@ public class RobotContainer {
     // Coral Intake Bindings
     cutil
         .supplier(Controllers.xbox_lb, DriveConstants.joysticks.OPERATOR)
-        .whileTrue(new CoralIntakeForwardCommand(coralIntake))
+        .onTrue(new CoralIntakeForwardCommand(coralIntake))
         .onFalse(new CoralIntakeStopCommand(coralIntake));
     cutil
         .triggerSupplier(Controllers.xbox_lt, 0.2, DriveConstants.joysticks.OPERATOR)
-        .whileTrue(new CoralIntakeReverseCommand(coralIntake))
+        .onTrue(new CoralIntakeReverseCommand(coralIntake))
         .onFalse(new CoralIntakeStopCommand(coralIntake));
 
     // Algae Arm Bindings
