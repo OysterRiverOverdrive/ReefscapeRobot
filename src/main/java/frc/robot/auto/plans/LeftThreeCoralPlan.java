@@ -12,30 +12,30 @@ import java.util.List;
 
 // STARTS ON THE RIGHT SIDE
 
-public class CoolTwoCoralAutoPlan extends ParallelCommandGroup {
+public class LeftThreeCoralPlan extends ParallelCommandGroup {
 
-  public CoolTwoCoralAutoPlan(DrivetrainSubsystem drivetrain) {
+  public LeftThreeCoralPlan(DrivetrainSubsystem drivetrain) {
     AutoCreationCmd autodrive = new AutoCreationCmd();
 
     // Auto Driving Commands
 
-    Command showyDrive1 = // goes from right side to reef, then turns to face the reef
+    Command showyDrive1 = // goes from left side to reef, then turns to face the reef
         autodrive.AutoDriveCmd(
             drivetrain,
             List.of(new Translation2d(2, 0.5)),
-            new Pose2d(3.52, -1.01, new Rotation2d(-Math.PI * 2 / 3)));
+            new Pose2d(3.52, 1.01, new Rotation2d(Math.PI * 2 / 3)));
     // Place coral and get algae
     Command showyDrive2 = // goes backwards to get coral, turns to face the coral getting place
         autodrive.AutoDriveCmd(
             drivetrain,
-            List.of(new Translation2d(-2.3, 0.5)),
-            new Pose2d(-2.98, 1.04, new Rotation2d(Math.PI)));
+            List.of(new Translation2d(-2.3, -0.5)),
+            new Pose2d(-2.98, -1.04, new Rotation2d(Math.PI)));
     // Get coral
     Command showyDrive3 = // goes back to the reef and turns to face the reef again
         autodrive.AutoDriveCmd(
             drivetrain,
-            List.of(new Translation2d(-0.68, 0.5)),
-            new Pose2d(-1.77, 1.09, new Rotation2d(Math.PI)));
+            List.of(new Translation2d(-0.68, -0.5)),
+            new Pose2d(-1.77, -1.09, new Rotation2d(Math.PI)));
     // after going back, place coral
 
     // Driving groups
