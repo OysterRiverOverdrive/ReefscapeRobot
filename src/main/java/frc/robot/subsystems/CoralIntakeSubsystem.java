@@ -26,4 +26,9 @@ public class CoralIntakeSubsystem extends SubsystemBase {
   public void coralIntakeStopCmd() {
     Motor.stopMotor();
   }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }
