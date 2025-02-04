@@ -20,7 +20,6 @@ import frc.robot.commands.CoralIntakeStopCommand;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
 import frc.robot.subsystems.AlgaeArmSubsystem;
-import frc.robot.subsystems.AlgaeSpinnerSubsystem;
 import frc.robot.subsystems.CoralIntakeSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -45,7 +44,6 @@ public class RobotContainer {
   // Subsystems
   private final DrivetrainSubsystem drivetrain = new DrivetrainSubsystem();
   private final LimelightSubsystem limelight = new LimelightSubsystem();
-  private final AlgaeSpinnerSubsystem algaeSpinner = new AlgaeSpinnerSubsystem();
   private final ElevatorSubsystem elevator = new ElevatorSubsystem();
   private final CoralIntakeSubsystem coralIntake = new CoralIntakeSubsystem();
   private final AlgaeArmSubsystem algaeArm = new AlgaeArmSubsystem();
@@ -86,19 +84,19 @@ public class RobotContainer {
     // Algae Spinner Bindings
     cutil
         .supplier(Controllers.xbox_rb, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new AlgaeSpinnerForwardCommand(algaeSpinner))
+        .onTrue(new AlgaeSpinnerForwardCommand(algaeArm))
         .onFalse(
             cutil.getTriggerButton(Controllers.xbox_lt, 0.2, DriveConstants.joysticks.OPERATOR)
-                ? new AlgaeSpinnerReverseCommand(algaeSpinner)
-                : new AlgaeSpinnerStopCommand(algaeSpinner));
+                ? new AlgaeSpinnerReverseCommand(algaeArm)
+                : new AlgaeSpinnerStopCommand(algaeArm));
 
     cutil
         .triggerSupplier(Controllers.xbox_rt, 0.2, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new AlgaeSpinnerReverseCommand(algaeSpinner))
+        .onTrue(new AlgaeSpinnerReverseCommand(algaeArm))
         .onFalse(
             cutil.Boolsupplier(Controllers.xbox_lb, DriveConstants.joysticks.OPERATOR)
-                ? new AlgaeSpinnerForwardCommand(algaeSpinner)
-                : new AlgaeSpinnerStopCommand(algaeSpinner));
+                ? new AlgaeSpinnerForwardCommand(algaeArm)
+                : new AlgaeSpinnerStopCommand(algaeArm));
 
     // Elevator Bindings
     cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
