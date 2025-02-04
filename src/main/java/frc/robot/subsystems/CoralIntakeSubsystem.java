@@ -9,21 +9,21 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotConstants;
 
-public class AlgaeSpinnerSubsystem extends SubsystemBase {
+public class CoralIntakeSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private SparkMax Motor = new SparkMax(RobotConstants.kAlgaeSpinnerCanId, MotorType.kBrushless);
+  private SparkMax Motor = new SparkMax(RobotConstants.kCoralIntakeCanId, MotorType.kBrushless);
 
-  public AlgaeSpinnerSubsystem() {}
+  public CoralIntakeSubsystem() {}
 
-  public void algaeSpinnerForwardCmd() {
-    Motor.set(RobotConstants.kAlgaeSpinnerSpeed);
+  public void coralIntakeForwardCmd() {
+    Motor.set(RobotConstants.kCoralIntakeSpeed);
   }
 
-  public void algaeSpinnerReverseCmd() {
-    Motor.set(0 - RobotConstants.kAlgaeSpinnerSpeed);
+  public void coralIntakeReverseCmd() {
+    Motor.set(0 - RobotConstants.kCoralIntakeSpeed);
   }
 
-  public void algaeSpinnerStopCmd() {
+  public void coralIntakeStopCmd() {
     Motor.stopMotor();
   }
 }

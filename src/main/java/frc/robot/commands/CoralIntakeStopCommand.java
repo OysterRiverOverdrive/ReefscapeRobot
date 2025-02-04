@@ -5,20 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.AlgaeSpinnerSubsystem;
+import frc.robot.subsystems.CoralIntakeSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class AlgaeSpinnerStopCommand extends Command {
+public class CoralIntakeStopCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final AlgaeSpinnerSubsystem algaeSpinner_subsystem;
+  private final CoralIntakeSubsystem coralIntake_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public AlgaeSpinnerStopCommand(AlgaeSpinnerSubsystem subsystem) {
-    algaeSpinner_subsystem = subsystem;
+  public CoralIntakeStopCommand(CoralIntakeSubsystem subsystem) {
+    coralIntake_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -30,7 +30,7 @@ public class AlgaeSpinnerStopCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    algaeSpinner_subsystem.algaeSpinnerStopCmd();
+    coralIntake_subsystem.coralIntakeStopCmd();
   }
 
   // Called once the command ends or is interrupted.
