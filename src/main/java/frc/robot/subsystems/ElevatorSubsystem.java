@@ -19,10 +19,10 @@ import frc.robot.Constants.RobotConstants.ElevatorConstants;
 public class ElevatorSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   private final SparkMax m_elevator1SparkMax =
-      new SparkMax(RobotConstants.kElevator1CanId, MotorType.kBrushless);
+      new SparkMax(10, MotorType.kBrushless);
 
   private final SparkMax m_elevator2SparkMax =
-      new SparkMax(RobotConstants.kElevator2CanId, MotorType.kBrushless);
+      new SparkMax(11, MotorType.kBrushless);
 
   private final AbsoluteEncoder m_elevator1Encoder;
 

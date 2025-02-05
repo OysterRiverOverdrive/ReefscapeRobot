@@ -13,6 +13,9 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.auto.*;
 // import frc.robot.auto.plans.*;
 import frc.robot.commands.TeleopCmd;
+import frc.robot.commands.elevdown;
+import frc.robot.commands.elevup;
+import frc.robot.commands.elevstop;
 // import frc.robot.subsystems.AlgaeArmSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -39,6 +42,9 @@ public class RobotContainer {
   private final LimelightSubsystem limelight = new LimelightSubsystem();
   private final ElevatorSubsystem elevator = new ElevatorSubsystem();
   // private final AlgaeArmSubsystem algaeArm = new AlgaeArmSubsystem();
+  private elevup elevup = new elevup(elevator);
+  private elevdown elevdown = new elevdown(elevator);
+  private elevstop elevstop = new elevstop(elevator);
 
   // Commands
   private final TeleopCmd teleopCmd =
@@ -49,7 +55,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Declare default command during Teleop Period as TeleopCmd(Driving Command)
     drivetrain.setDefaultCommand(teleopCmd);
-    elevator.setDefaultCommand(new InstantCommand(() -> elevator.stop()));
 
     // Add Auto options to dropdown and push to dashboard
     m_chooser.setDefaultOption("Auto[Rename Me]", auto1);
@@ -87,10 +92,10 @@ public class RobotContainer {
     //     .supplier(Controllers.xbox_options, DriveConstants.joysticks.OPERATOR)
     //     .onTrue(new InstantCommand(() -> elevator.toBase()));
 
-    cutil.POVsupplier(0, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.runup()));
-    cutil.POVsupplier(90, DriveConstants.joysticks.OPERATOR)
-        .onTrue(new InstantCommand(() -> elevator.rundown()));
+    cutil.supplier(1, DriveConstants.joysticks.OPERATOR)
+        .onTrue(elevup).onFalse(elevstop);
+    cutil.supplier(2, DriveConstants.joysticks.OPERATOR)
+        .onTrue(elevdown).onFalse(elevstop);
     // // Algae Arm Bindings
     // cutil
     //     .supplier(Controllers.xbox_b, DriveConstants.joysticks.OPERATOR)
